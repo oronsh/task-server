@@ -6,11 +6,6 @@ const PORT = 3000;
 
 const scheduler = new Scheduler();
 
-// set automatic task
-scheduler.set('Heartbeat', () => {
-    console.log('Hello Auto Task!');
-});
-
 app.post('/task', (req, res) => {
     // set manual task
     scheduler.set('ManualTask', () => {
@@ -23,4 +18,13 @@ app.post('/task', (req, res) => {
     })
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+    console.log(`Listening on ${PORT}`);
+
+    // set automatic task
+    scheduler.set('Heartbeat', () => {
+        console.log('Hello Auto Task!');
+    });
+    
+});
+
